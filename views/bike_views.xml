@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bike_tree" model="ir.ui.view">
+        <field name="name">bike.bike.tree</field>
+        <field name="model">bike.bike</field>
+        <field name="arch" type="xml">
+            <list string="Vélos">
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="brand"/>
+                <field name="model"/>
+                <field name="state"/>
+                <field name="sale_price"/>
+                <field name="rental_price_day"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bike_form" model="ir.ui.view">
+        <field name="name">bike.bike.form</field>
+        <field name="model">bike.bike</field>
+        <field name="arch" type="xml">
+            <form string="Vélo">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <field name="image_1920" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Nom du vélo"/>
+                        </h1>
+                        <h3>
+                            <field name="reference" readonly="1"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="category_id"/>
+                            <field name="brand"/>
+                            <field name="model"/>
+                            <field name="year"/>
+                        </group>
+                        <group>
+                            <field name="frame_size"/>
+                            <field name="wheel_size"/>
+                            <field name="color"/>
+                            <field name="weight"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="purchase_price"/>
+                            <field name="sale_price"/>
+                        </group>
+                        <group>
+                            <field name="available_for_rent"/>
+                            <field name="rental_price_hour"/>
+                            <field name="rental_price_day"/>
+                            <field name="rental_price_week"/>
+                            <field name="rental_price_month"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bike" model="ir.actions.act_window">
+        <field name="name">Vélos</field>
+        <field name="res_model">bike.bike</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="view_bike_category_tree" model="ir.ui.view">
+        <field name="name">bike.category.tree</field>
+        <field name="model">bike.category</field>
+        <field name="arch" type="xml">
+            <list string="Catégories de vélos">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="bike_count"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_bike_category_form" model="ir.ui.view">
+        <field name="name">bike.category.form</field>
+        <field name="model">bike.category</field>
+        <field name="arch" type="xml">
+            <form string="Catégorie de vélo">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="bike_count"/>
+                        <field name="active"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bike_category" model="ir.actions.act_window">
+        <field name="name">Catégories de vélos</field>
+        <field name="res_model">bike.category</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

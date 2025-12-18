@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bike_bike_all,bike.bike.all,model_bike_bike,,1,1,1,1
+access_bike_category_all,bike.category.all,model_bike_category,,1,1,1,1
+access_rental_contract_all,rental.contract.all,model_rental_contract,,1,1,1,1
+access_rental_pricing_all,rental.pricing.all,model_rental_pricing,,1,1,1,1
+rental.access_rental_create_invoice,access_rental_create_invoice,rental.model_rental_create_invoice,base.group_user,1,1,1,1

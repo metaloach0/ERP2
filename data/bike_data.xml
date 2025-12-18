@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="bike_001" model="bike.bike">
+            <field name="name">Trek Marlin 7</field>
+            <field name="reference">BIKE001</field>
+            <field name="category_id" ref="bike_category_vtt"/>
+            <field name="brand">Trek</field>
+            <field name="model">Marlin 7</field>
+            <field name="frame_size">m</field>
+            <field name="wheel_size">29</field>
+            <field name="color">Noir</field>
+            <field name="weight">13.5</field>
+            <field name="year">2024</field>
+            <field name="purchase_price">800.0</field>
+            <field name="sale_price">1200.0</field>
+            <field name="available_for_rent" eval="True"/>
+            <field name="rental_price_hour">8.0</field>
+            <field name="rental_price_day">35.0</field>
+            <field name="rental_price_week">200.0</field>
+            <field name="rental_price_month">600.0</field>
+            <field name="state">available</field>
+            <field name="description">VTT semi-rigide polyvalent, idéal pour les sentiers</field>
+        </record>
+
+        <record id="bike_002" model="bike.bike">
+            <field name="name">Giant TCR Advanced</field>
+            <field name="reference">BIKE002</field>
+            <field name="category_id" ref="bike_category_route"/>
+            <field name="brand">Giant</field>
+            <field name="model">TCR Advanced</field>
+            <field name="frame_size">l</field>
+            <field name="wheel_size">28</field>
+            <field name="color">Bleu</field>
+            <field name="weight">7.8</field>
+            <field name="year">2024</field>
+            <field name="purchase_price">1500.0</field>
+            <field name="sale_price">2200.0</field>
+            <field name="available_for_rent" eval="True"/>
+            <field name="rental_price_hour">10.0</field>
+            <field name="rental_price_day">40.0</field>
+            <field name="rental_price_week">250.0</field>
+            <field name="rental_price_month">700.0</field>
+            <field name="state">available</field>
+            <field name="description">Vélo de route en carbone, performance et légèreté</field>
+        </record>
+
+        <record id="bike_003" model="bike.bike">
+            <field name="name">Decathlon Elops 520</field>
+            <field name="reference">BIKE003</field>
+            <field name="category_id" ref="bike_category_ville"/>
+            <field name="brand">Decathlon</field>
+            <field name="model">Elops 520</field>
+            <field name="frame_size">m</field>
+            <field name="wheel_size">28</field>
+            <field name="color">Gris</field>
+            <field name="weight">16.0</field>
+            <field name="year">2023</field>
+            <field name="purchase_price">300.0</field>
+            <field name="sale_price">450.0</field>
+            <field name="available_for_rent" eval="True"/>
+            <field name="rental_price_hour">5.0</field>
+            <field name="rental_price_day">20.0</field>
+            <field name="rental_price_week">100.0</field>
+            <field name="rental_price_month">300.0</field>
+            <field name="state">available</field>
+            <field name="description">Vélo de ville confortable avec porte-bagages</field>
+        </record>
+
+        <record id="bike_004" model="bike.bike">
+            <field name="name">Specialized Turbo Vado</field>
+            <field name="reference">BIKE004</field>
+            <field name="category_id" ref="bike_category_electrique"/>
+            <field name="brand">Specialized</field>
+            <field name="model">Turbo Vado</field>
+            <field name="frame_size">m</field>
+            <field name="wheel_size">28</field>
+            <field name="color">Rouge</field>
+            <field name="weight">22.0</field>
+            <field name="year">2024</field>
+            <field name="purchase_price">2500.0</field>
+            <field name="sale_price">3500.0</field>
+            <field name="available_for_rent" eval="True"/>
+            <field name="rental_price_hour">12.0</field>
+            <field name="rental_price_day">50.0</field>
+            <field name="rental_price_week">300.0</field>
+            <field name="rental_price_month">800.0</field>
+            <field name="state">available</field>
+            <field name="description">Vélo électrique puissant avec batterie longue durée</field>
+        </record>
+
+        <record id="bike_005" model="bike.bike">
+            <field name="name">Btwin 500 Kids</field>
+            <field name="reference">BIKE005</field>
+            <field name="category_id" ref="bike_category_enfant"/>
+            <field name="brand">Btwin</field>
+            <field name="model">500 Kids</field>
+            <field name="frame_size">xs</field>
+            <field name="wheel_size">20</field>
+            <field name="color">Rose</field>
+            <field name="weight">9.0</field>
+            <field name="year">2023</field>
+            <field name="purchase_price">150.0</field>
+            <field name="sale_price">250.0</field>
+            <field name="available_for_rent" eval="True"/>
+            <field name="rental_price_hour">4.0</field>
+            <field name="rental_price_day">15.0</field>
+            <field name="rental_price_week">80.0</field>
+            <field name="rental_price_month">250.0</field>
+            <field name="state">available</field>
+            <field name="description">Vélo pour enfant 6-9 ans, léger et maniable</field>
+        </record>
+
+        <record id="bike_006" model="bike.bike">
+            <field name="name">Cannondale Trail 5</field>
+            <field name="reference">BIKE006</field>
+            <field name="category_id" ref="bike_category_vtt"/>
+            <field name="brand">Cannondale</field>
+            <field name="model">Trail 5</field>
+            <field name="frame_size">l</field>
+            <field name="wheel_size">29</field>
+            <field name="color">Vert</field>
+            <field name="weight">14.0</field>
+            <field name="year">2024</field>
+            <field name="purchase_price">750.0</field>
+            <field name="sale_price">1100.0</field>
+            <field name="available_for_rent" eval="True"/>
+            <field name="rental_price_hour">8.0</field>
+            <field name="rental_price_day">35.0</field>
+            <field name="rental_price_week">200.0</field>
+            <field name="rental_price_month">600.0</field>
+            <field name="state">available</field>
+            <field name="description">VTT robuste pour terrains accidentés</field>
+        </record>
+
+    </data>
+</odoo>

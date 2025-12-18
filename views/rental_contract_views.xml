@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_rental_contract_tree" model="ir.ui.view">
+        <field name="name">rental.contract.tree</field>
+        <field name="model">rental.contract</field>
+        <field name="arch" type="xml">
+            <list string="Contrats de location">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="bike_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="duration"/>
+                <field name="total_price"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_rental_contract_form" model="ir.ui.view">
+        <field name="name">rental.contract.form</field>
+        <field name="model">rental.contract</field>
+        <field name="arch" type="xml">
+            <form string="Contrat de location">
+                <header>
+                    <button name="action_return" type="object" string="Done" /> 
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="bike_id"/>
+                        </group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="duration_type"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="duration" readonly="1"/>
+                            <field name="unit_price"/>
+                        </group>
+                        <group>
+                            <field name="total_price" readonly="1"/>
+                            <field name="deposit"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_rental_contract" model="ir.actions.act_window">
+        <field name="name">Contrats de location</field>
+        <field name="res_model">rental.contract</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

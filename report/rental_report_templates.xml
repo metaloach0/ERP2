@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_rental_contract_document">
+        <t t-call="web.external_layout">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <h2>Contrat de Location</h2>
+                    
+                    <div class="row mt32 mb32">
+                        <div class="col-6">
+                            <strong>Numéro de contrat:</strong>
+                            <p t-field="o.name"/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Date:</strong>
+                            <p t-field="o.create_date" t-options='{"widget": "date"}'/>
+                        </div>
+                    </div>
+
+                    <div class="row mt32 mb32">
+                        <div class="col-6">
+                            <strong>Client:</strong>
+                            <div t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"]}'/>
+                        </div>
+                        <div class="col-6">
+                            <strong>État:</strong>
+                            <p>
+                                <span t-if="o.state == 'draft'">Brouillon</span>
+                                <span t-if="o.state == 'confirmed'">Confirmé</span>
+                                <span t-if="o.state == 'ongoing'">En cours</span>
+                                <span t-if="o.state == 'returned'">Retourné</span>
+                                <span t-if="o.state == 'cancelled'">Annulé</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3>Informations sur le vélo</h3>
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Vélo:</strong></td>
+                            <td><span t-field="o.bike_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Marque:</strong></td>
+                            <td><span t-field="o.bike_id.brand"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Modèle:</strong></td>
+                            <td><span t-field="o.bike_id.model"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Référence:</strong></td>
+                            <td><span t-field="o.bike_id.reference"/></td>
+                        </tr>
+                    </table>
+
+                    <h3>Période de location</h3>
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Date de début:</strong></td>
+                            <td><span t-field="o.start_date"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date de fin:</strong></td>
+                            <td><span t-field="o.end_date"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Durée:</strong></td>
+                            <td>
+                                <span t-field="o.duration"/>
+                                <span t-if="o.duration_type == 'hour'"> heure(s)</span>
+                                <span t-if="o.duration_type == 'day'"> jour(s)</span>
+                                <span t-if="o.duration_type == 'week'"> semaine(s)</span>
+                                <span t-if="o.duration_type == 'month'"> mois</span>
+                            </td>
+                        </tr>
+                        <tr t-if="o.actual_return_date">
+                            <td><strong>Date de retour effective:</strong></td>
+                            <td><span t-field="o.actual_return_date"/></td>
+                        </tr>
+                    </table>
+
+                    <h3>Tarification</h3>
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Prix unitaire:</strong></td>
+                            <td><span t-field="o.unit_price"/> €</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Durée:</strong></td>
+                            <td><span t-field="o.duration"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Prix total:</strong></td>
+                            <td><strong><span t-field="o.total_price"/> €</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Caution:</strong></td>
+                            <td><span t-field="o.deposit"/> €</td>
+                        </tr>
+                    </table>
+
+                    <div t-if="o.notes" class="mt32">
+                        <h3>Notes</h3>
+                        <p t-field="o.notes"/>
+                    </div>
+
+                    <div class="mt64">
+                        <p>
+                            <strong>Signature du client:</strong>
+                        </p>
+                        <p style="height: 80px; border-bottom: 1px solid black; width: 50%;"></p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

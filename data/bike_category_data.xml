@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="bike_category_vtt" model="bike.category">
+            <field name="name">VTT</field>
+            <field name="code">VTT</field>
+            <field name="description">Vélos Tout Terrain pour les chemins et sentiers</field>
+        </record>
+
+        <record id="bike_category_route" model="bike.category">
+            <field name="name">Route</field>
+            <field name="code">ROUTE</field>
+            <field name="description">Vélos de route pour l'asphalte</field>
+        </record>
+
+        <record id="bike_category_ville" model="bike.category">
+            <field name="name">Ville</field>
+            <field name="code">VILLE</field>
+            <field name="description">Vélos urbains pour la ville</field>
+        </record>
+
+        <record id="bike_category_electrique" model="bike.category">
+            <field name="name">Électrique</field>
+            <field name="code">ELEC</field>
+            <field name="description">Vélos à assistance électrique</field>
+        </record>
+
+        <record id="bike_category_enfant" model="bike.category">
+            <field name="name">Enfant</field>
+            <field name="code">ENFANT</field>
+            <field name="description">Vélos pour enfants</field>
+        </record>
+
+    </data>
+</odoo>

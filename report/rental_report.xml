@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_rental_contract" model="ir.actions.report">
+        <field name="name">Contrat de location</field>
+        <field name="model">rental.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bike_rental.report_rental_contract_document</field>
+        <field name="report_file">bike_rental.report_rental_contract_document</field>
+        <field name="binding_model_id" ref="model_rental_contract"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
