@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend Rental Wizard Form View -->
+    <record id="bike_rental_extend_wizard_form" model="ir.ui.view">
+        <field name="name">bike.rental.extend.wizard.form</field>
+        <field name="model">bike.rental.extend.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Prolonger la location">
+                <group>
+                    <group string="Location actuelle">
+                        <field name="rental_id" readonly="1"/>
+                        <field name="current_date_end" readonly="1"/>
+                    </group>
+                    <group string="Prolongation">
+                        <field name="extension_type"/>
+                        <field name="extension_duration"/>
+                        <field name="new_date_end" readonly="1"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Tarification">
+                        <field name="apply_discount"/>
+                        <field name="discount_percent"/>
+                        <field name="extension_price" readonly="1"/>
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="reason"/>
+                </group>
+                <footer>
+                    <button name="action_extend" string="Prolonger" type="object" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Action -->
+    <record id="action_extend_rental_wizard" model="ir.actions.act_window">
+        <field name="name">Prolonger la location</field>
+        <field name="res_model">bike.rental.extend.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

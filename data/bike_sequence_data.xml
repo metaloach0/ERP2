@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Bike Sequence -->
+        <record id="seq_bike_bike" model="ir.sequence">
+            <field name="name">Velo</field>
+            <field name="code">bike.bike</field>
+            <field name="prefix">BIKE-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Accessory Sequence -->
+        <record id="seq_bike_accessory" model="ir.sequence">
+            <field name="name">Accessoire</field>
+            <field name="code">bike.accessory</field>
+            <field name="prefix">ACC-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Rental Sequence -->
+        <record id="seq_bike_rental" model="ir.sequence">
+            <field name="name">Location</field>
+            <field name="code">bike.rental</field>
+            <field name="prefix">LOC-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Rental Contract Sequence -->
+        <record id="seq_bike_rental_contract" model="ir.sequence">
+            <field name="name">Contrat de location</field>
+            <field name="code">bike.rental.contract</field>
+            <field name="prefix">CTR-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

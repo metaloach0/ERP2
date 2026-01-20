@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Root Categories -->
+        <record id="bike_category_road" model="bike.category">
+            <field name="name">Velos de route</field>
+            <field name="code">ROAD</field>
+            <field name="sequence">10</field>
+            <field name="description">Velos optimises pour la vitesse et les longues distances sur route</field>
+        </record>
+
+        <record id="bike_category_mountain" model="bike.category">
+            <field name="name">VTT</field>
+            <field name="code">MTB</field>
+            <field name="sequence">20</field>
+            <field name="description">Velos tout-terrain pour les sentiers et chemins</field>
+        </record>
+
+        <record id="bike_category_city" model="bike.category">
+            <field name="name">Velos de ville</field>
+            <field name="code">CITY</field>
+            <field name="sequence">30</field>
+            <field name="description">Velos confortables pour les deplacements urbains</field>
+        </record>
+
+        <record id="bike_category_electric" model="bike.category">
+            <field name="name">Velos electriques</field>
+            <field name="code">ELEC</field>
+            <field name="sequence">40</field>
+            <field name="description">Velos a assistance electrique</field>
+        </record>
+
+        <record id="bike_category_kids" model="bike.category">
+            <field name="name">Velos enfants</field>
+            <field name="code">KIDS</field>
+            <field name="sequence">50</field>
+            <field name="description">Velos adaptes aux enfants</field>
+        </record>
+
+        <!-- Sub Categories -->
+        <record id="bike_category_road_racing" model="bike.category">
+            <field name="name">Course</field>
+            <field name="code">ROAD-RACE</field>
+            <field name="sequence">11</field>
+            <field name="parent_id" ref="bike_category_road"/>
+            <field name="description">Velos de competition</field>
+        </record>
+
+        <record id="bike_category_road_endurance" model="bike.category">
+            <field name="name">Endurance</field>
+            <field name="code">ROAD-END</field>
+            <field name="sequence">12</field>
+            <field name="parent_id" ref="bike_category_road"/>
+            <field name="description">Velos pour longues distances</field>
+        </record>
+
+        <record id="bike_category_mtb_cross" model="bike.category">
+            <field name="name">Cross-country</field>
+            <field name="code">MTB-XC</field>
+            <field name="sequence">21</field>
+            <field name="parent_id" ref="bike_category_mountain"/>
+            <field name="description">VTT legers pour cross-country</field>
+        </record>
+
+        <record id="bike_category_mtb_trail" model="bike.category">
+            <field name="name">Trail</field>
+            <field name="code">MTB-TRAIL</field>
+            <field name="sequence">22</field>
+            <field name="parent_id" ref="bike_category_mountain"/>
+            <field name="description">VTT polyvalents pour sentiers</field>
+        </record>
+
+        <record id="bike_category_elec_city" model="bike.category">
+            <field name="name">VAE Ville</field>
+            <field name="code">ELEC-CITY</field>
+            <field name="sequence">41</field>
+            <field name="parent_id" ref="bike_category_electric"/>
+            <field name="description">Velos electriques urbains</field>
+        </record>
+
+        <record id="bike_category_elec_mtb" model="bike.category">
+            <field name="name">VTT Electrique</field>
+            <field name="code">ELEC-MTB</field>
+            <field name="sequence">42</field>
+            <field name="parent_id" ref="bike_category_electric"/>
+            <field name="description">VTT a assistance electrique</field>
+        </record>
+    </data>
+</odoo>

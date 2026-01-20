@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Rental Analysis Report -->
+    <record id="bike_rental_report_view_pivot" model="ir.ui.view">
+        <field name="name">bike.rental.report.pivot</field>
+        <field name="model">bike.rental</field>
+        <field name="arch" type="xml">
+            <pivot string="Analyse des locations">
+                <field name="bike_id" type="row"/>
+                <field name="total_price" type="measure"/>
+                <field name="duration" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="bike_rental_report_view_graph" model="ir.ui.view">
+        <field name="name">bike.rental.report.graph</field>
+        <field name="model">bike.rental</field>
+        <field name="arch" type="xml">
+            <graph string="Revenus des locations" type="bar">
+                <field name="bike_id"/>
+                <field name="total_price" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_rental_report" model="ir.actions.act_window">
+        <field name="name">Analyse des locations</field>
+        <field name="res_model">bike.rental</field>
+        <field name="view_mode">pivot,graph</field>
+    </record>
+</odoo>

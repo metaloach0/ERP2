@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <menuitem id="menu_bike_shop_root"
+              name="Bike Shop"
+              web_icon="bike_shop,static/description/icon.png"
+              sequence="50"/>
+
+    
+    <menuitem id="menu_bike_shop_sales"
+              name="Ventes"
+              parent="menu_bike_shop_root"
+              sequence="10"/>
+
+    <menuitem id="menu_bike_bike"
+              name="Velos"
+              parent="menu_bike_shop_sales"
+              action="action_bike_bike"
+              sequence="10"/>
+
+    <menuitem id="menu_bike_accessory"
+              name="Accessoires"
+              parent="menu_bike_shop_sales"
+              action="action_bike_accessory"
+              sequence="20"/>
+
+    
+    <menuitem id="menu_bike_shop_rental"
+              name="Locations"
+              parent="menu_bike_shop_root"
+              sequence="20"/>
+
+    <menuitem id="menu_bike_rental"
+              name="Locations"
+              parent="menu_bike_shop_rental"
+              action="action_bike_rental"
+              sequence="10"/>
+
+    <menuitem id="menu_bike_rental_contract"
+              name="Contrats"
+              parent="menu_bike_shop_rental"
+              action="action_bike_rental_contract"
+              sequence="20"/>
+
+    <menuitem id="menu_bike_rental_wizard"
+              name="Nouvelle location"
+              parent="menu_bike_shop_rental"
+              action="action_bike_rental_wizard"
+              sequence="30"/>
+
+    
+    <menuitem id="menu_bike_shop_customers"
+              name="Clients"
+              parent="menu_bike_shop_root"
+              action="action_bike_customers"
+              sequence="30"/>
+
+    
+    <menuitem id="menu_bike_shop_reporting"
+              name="Reporting"
+              parent="menu_bike_shop_root"
+              sequence="40"/>
+
+    <menuitem id="menu_bike_rental_report"
+              name="Analyse des locations"
+              parent="menu_bike_shop_reporting"
+              action="action_rental_report"
+              sequence="10"/>
+
+    <menuitem id="menu_bike_sales_report"
+              name="Analyse des ventes"
+              parent="menu_bike_shop_reporting"
+              action="action_sales_report"
+              sequence="20"/>
+
+    
+    <menuitem id="menu_bike_shop_config"
+              name="Configuration"
+              parent="menu_bike_shop_root"
+              groups="base.group_system"
+              sequence="50"/>
+
+    <menuitem id="menu_bike_category"
+              name="Categories de velos"
+              parent="menu_bike_shop_config"
+              action="action_bike_category"
+              sequence="10"/>
+
+    <menuitem id="menu_bike_pricing"
+              name="Grille tarifaire"
+              parent="menu_bike_shop_config"
+              action="action_rental_pricing"
+              sequence="20"/>
+</odoo>

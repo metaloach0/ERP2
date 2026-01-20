@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <template id="helb_google_font" inherit_id="website.layout" name="HELB Google Font">
+        <xpath expr="//head" position="inside">
+            <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;display=swap" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+    
+    <template id="bikes_catalog" name="Catalogue Velos">
+        <t t-call="website.layout">
+            <div class="helb-page">
+                <!-- Hero Section -->
+                <div class="helb-hero">
+                    <div class="helb-hero-content container text-center">
+                        <h1 class="helb-pixel-title mb-3" style="font-size: 28px;">NOS VELOS</h1>
+                        <p class="helb-subtitle mb-4">Decouvrez notre selection de velos disponibles</p>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a href="/shop/accessories" class="helb-btn helb-btn-blue">
+                                <i class="fa fa-cube me-2"></i>ACCESSOIRES
+                            </a>
+                            <a href="/rental/info" class="helb-btn helb-btn-secondary">
+                                <i class="fa fa-clock-o me-2"></i>LOCATION
+                            </a>
+                            <a href="/contact" class="helb-btn helb-btn-secondary">
+                                <i class="fa fa-envelope me-2"></i>CONTACT
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="helb-nav-section">
+                    <div class="container">
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <a t-attf-href="/shop/bikes" 
+                               t-attf-class="helb-filter-btn #{not current_type and not current_category and 'active' or ''}">
+                                TOUS
+                            </a>
+                            <t t-foreach="bike_types.items()" t-as="bt">
+                                <a t-attf-href="/shop/bikes?bike_type=#{bt[0]}" 
+                                   t-attf-class="helb-filter-btn #{current_type == bt[0] and 'active' or ''}">
+                                    <t t-esc="bt[1].upper()"/>
+                                </a>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="container py-5">
+                    <div class="row g-4">
+                        <t t-foreach="bikes" t-as="bike">
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="helb-card h-100">
+                                    <div class="position-relative">
+                                        <t t-if="bike.image_128">
+                                            <img t-att-src="'/web/image/bike.bike/%s/image_128' % bike.id" 
+                                                 class="w-100 helb-card-img"/>
+                                        </t>
+                                        <t t-else="">
+                                            <div class="helb-card-img-placeholder">
+                                                <i class="fa fa-bicycle"></i>
+                                            </div>
+                                        </t>
+                                        <span class="position-absolute top-0 end-0 m-2 helb-badge helb-badge-success">
+                                            EN STOCK
+                                        </span>
+                                    </div>
+                                    <div class="helb-card-body">
+                                        <h5 class="helb-card-title"><t t-esc="bike.name"/></h5>
+                                        <p class="helb-card-text mb-2">
+                                            <t t-esc="bike.brand"/> | <t t-esc="bike.size"/>
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <span class="helb-price">
+                                                <t t-esc="int(bike.sale_price)"/> EUR
+                                            </span>
+                                            <a t-attf-href="/shop/bike/#{bike.id}" class="helb-btn helb-btn-primary" style="font-size: 8px; padding: 8px 12px;">
+                                                VOIR
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <t t-if="not bikes">
+                        <div class="helb-empty-state">
+                            <i class="fa fa-bicycle d-block"></i>
+                            <p>AUCUN VELO DISPONIBLE</p>
+                            <a href="/shop/bikes" class="helb-btn helb-btn-primary mt-3">VOIR TOUS</a>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+  
+    <template id="bike_detail" name="Detail Velo">
+        <t t-call="website.layout">
+            <div class="helb-page">
+               
+                <div class="helb-breadcrumb">
+                    <div class="container">
+                        <a href="/shop/bikes">VELOS</a>
+                        <span class="mx-2">&gt;</span>
+                        <span t-esc="bike.name.upper()"/>
+                    </div>
+                </div>
+
+                <div class="container py-5">
+                    <div class="row">
+                       
+                        <div class="col-lg-6 mb-4">
+                            <t t-if="bike.image_1920">
+                                <img t-att-src="'/web/image/bike.bike/%s/image_1920' % bike.id" 
+                                     class="img-fluid helb-detail-img"/>
+                            </t>
+                            <t t-else="">
+                                <div class="helb-card-img-placeholder" style="height: 400px;">
+                                    <i class="fa fa-bicycle" style="font-size: 6rem;"></i>
+                                </div>
+                            </t>
+                        </div>
+
+                        
+                        <div class="col-lg-6">
+                            <span class="helb-badge helb-badge-blue mb-3" t-esc="bike.bike_type"/>
+                            <h1 class="helb-pixel-title mb-2" style="font-size: 22px;"><t t-esc="bike.name.upper()"/></h1>
+                            <p class="helb-subtitle"><t t-esc="bike.brand"/> | Ref: <t t-esc="bike.reference"/></p>
+
+                            <div class="my-4 p-3" style="background: var(--helb-gray); border-left: 4px solid var(--helb-orange);">
+                                <span class="helb-price" style="font-size: 24px;">
+                                    <t t-esc="int(bike.sale_price)"/> EUR
+                                </span>
+                                <br/>
+                                <span class="helb-badge helb-badge-success mt-2">
+                                    <i class="fa fa-check"></i> <t t-esc="bike.stock_quantity"/> EN STOCK
+                                </span>
+                            </div>
+
+                            <table class="helb-specs-table w-100 mb-4">
+                                <tr t-if="bike.size">
+                                    <th>TAILLE</th>
+                                    <td t-esc="bike.size"/>
+                                </tr>
+                                <tr t-if="bike.color">
+                                    <th>COULEUR</th>
+                                    <td t-esc="bike.color"/>
+                                </tr>
+                                <tr t-if="bike.frame_material">
+                                    <th>CADRE</th>
+                                    <td t-esc="bike.frame_material"/>
+                                </tr>
+                                <tr t-if="bike.wheel_size">
+                                    <th>ROUES</th>
+                                    <td t-esc="bike.wheel_size"/>
+                                </tr>
+                                <tr t-if="bike.gears_count">
+                                    <th>VITESSES</th>
+                                    <td><t t-esc="bike.gears_count"/> vitesses</td>
+                                </tr>
+                                <tr t-if="bike.weight">
+                                    <th>POIDS</th>
+                                    <td><t t-esc="bike.weight"/> kg</td>
+                                </tr>
+                            </table>
+
+                            
+                            <div class="helb-cta-box">
+                                <h4><i class="fa fa-shopping-cart me-2"></i>INTERESSE ?</h4>
+                                <p>Contactez-nous pour acheter ce velo</p>
+                                <a href="/contact" class="helb-btn helb-btn-secondary">
+                                    <i class="fa fa-envelope me-2"></i>CONTACT
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                    <t t-if="related_bikes">
+                        <div class="helb-section-header mt-5">
+                            <h2>VELOS SIMILAIRES</h2>
+                            <div class="helb-divider"></div>
+                        </div>
+                        <div class="row g-4">
+                            <t t-foreach="related_bikes" t-as="rbike">
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="helb-card">
+                                        <t t-if="rbike.image_128">
+                                            <img t-att-src="'/web/image/bike.bike/%s/image_128' % rbike.id" 
+                                                 class="w-100 helb-card-img" style="height: 150px;"/>
+                                        </t>
+                                        <div class="helb-card-body">
+                                            <h6 class="helb-card-title" style="font-size: 9px;" t-esc="rbike.name"/>
+                                            <span class="helb-price" style="font-size: 12px;">
+                                                <t t-esc="int(rbike.sale_price)"/> EUR
+                                            </span>
+                                            <a t-attf-href="/shop/bike/#{rbike.id}" class="stretched-link"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+   
+    <template id="accessories_catalog" name="Catalogue Accessoires">
+        <t t-call="website.layout">
+            <div class="helb-page">
+              
+                <div class="helb-hero">
+                    <div class="helb-hero-content container text-center">
+                        <h1 class="helb-pixel-title mb-3" style="font-size: 28px;">ACCESSOIRES</h1>
+                        <p class="helb-subtitle mb-4">Equipez-vous pour vos aventures</p>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a href="/shop/bikes" class="helb-btn helb-btn-primary">
+                                <i class="fa fa-bicycle me-2"></i>VELOS
+                            </a>
+                            <a href="/rental/info" class="helb-btn helb-btn-secondary">
+                                <i class="fa fa-clock-o me-2"></i>LOCATION
+                            </a>
+                            <a href="/contact" class="helb-btn helb-btn-secondary">
+                                <i class="fa fa-envelope me-2"></i>CONTACT
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+              
+                <div class="helb-nav-section">
+                    <div class="container">
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <a href="/shop/accessories" 
+                               t-attf-class="helb-filter-btn #{not current_category and 'active' or ''}">
+                                TOUS
+                            </a>
+                            <t t-foreach="categories.items()" t-as="cat">
+                                <a t-attf-href="/shop/accessories?category=#{cat[0]}" 
+                                   t-attf-class="helb-filter-btn #{current_category == cat[0] and 'active' or ''}">
+                                    <t t-esc="cat[1].upper()"/>
+                                </a>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+
+          
+                <div class="container py-5">
+                    <div class="row g-4">
+                        <t t-foreach="accessories" t-as="acc">
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="helb-card h-100">
+                                    <t t-if="acc.image_128">
+                                        <img t-att-src="'/web/image/bike.accessory/%s/image_128' % acc.id" 
+                                             class="w-100 helb-card-img" style="height: 180px;"/>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="helb-card-img-placeholder" style="height: 180px;">
+                                            <i class="fa fa-cube"></i>
+                                        </div>
+                                    </t>
+                                    <div class="helb-card-body">
+                                        <h6 class="helb-card-title"><t t-esc="acc.name"/></h6>
+                                        <p class="helb-card-text mb-2" t-esc="acc.brand"/>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="helb-price" style="font-size: 12px;">
+                                                <t t-esc="int(acc.sale_price)"/> EUR
+                                            </span>
+                                            <span class="helb-badge helb-badge-success" style="font-size: 7px;">
+                                                x<t t-esc="acc.stock_quantity"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <t t-if="not accessories">
+                        <div class="helb-empty-state">
+                            <i class="fa fa-cube d-block"></i>
+                            <p>AUCUN ACCESSOIRE DISPONIBLE</p>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+   
+    <template id="accessory_detail" name="Detail Accessoire">
+        <t t-call="website.layout">
+            <div class="helb-page">
+                <div class="helb-breadcrumb">
+                    <div class="container">
+                        <a href="/shop/accessories">ACCESSOIRES</a>
+                        <span class="mx-2">&gt;</span>
+                        <span t-esc="accessory.name.upper()"/>
+                    </div>
+                </div>
+
+                <div class="container py-5">
+                    <div class="row">
+                        <div class="col-lg-5 mb-4">
+                            <t t-if="accessory.image_1920">
+                                <img t-att-src="'/web/image/bike.accessory/%s/image_1920' % accessory.id" 
+                                     class="img-fluid helb-detail-img"/>
+                            </t>
+                            <t t-else="">
+                                <div class="helb-card-img-placeholder" style="height: 300px;">
+                                    <i class="fa fa-cube" style="font-size: 5rem;"></i>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="col-lg-7">
+                            <h1 class="helb-pixel-title mb-2" style="font-size: 20px;"><t t-esc="accessory.name.upper()"/></h1>
+                            <p class="helb-subtitle"><t t-esc="accessory.brand"/> | Ref: <t t-esc="accessory.reference"/></p>
+
+                            <div class="my-4 p-3" style="background: var(--helb-gray); border-left: 4px solid var(--helb-orange);">
+                                <span class="helb-price" style="font-size: 24px;">
+                                    <t t-esc="int(accessory.sale_price)"/> EUR
+                                </span>
+                                <br/>
+                                <span class="helb-badge helb-badge-success mt-2">
+                                    <t t-esc="accessory.stock_quantity"/> EN STOCK
+                                </span>
+                            </div>
+
+                            <div class="helb-cta-box">
+                                <h4><i class="fa fa-shopping-cart me-2"></i>ACHETER</h4>
+                                <p>Disponible en magasin</p>
+                                <a href="/contact" class="helb-btn helb-btn-secondary">
+                                    <i class="fa fa-envelope me-2"></i>CONTACT
+                                </a>
+                            </div>
+
+                            <t t-if="accessory.description">
+                                <div class="mt-4 p-3" style="background: var(--helb-gray);">
+                                    <h5 class="helb-pixel-title" style="font-size: 12px; margin-bottom: 10px;">DESCRIPTION</h5>
+                                    <p class="helb-card-text" t-esc="accessory.description"/>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+   
+    <template id="rental_info" name="Informations Location">
+        <t t-call="website.layout">
+            <div class="helb-page">
+                <div class="helb-hero">
+                    <div class="helb-hero-content container text-center">
+                        <h1 class="helb-pixel-title mb-3" style="font-size: 28px;">LOCATION</h1>
+                        <p class="helb-subtitle mb-4">Louez un velo pour vos aventures</p>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a href="/shop/bikes" class="helb-btn helb-btn-primary">
+                                <i class="fa fa-bicycle me-2"></i>VELOS
+                            </a>
+                            <a href="/shop/accessories" class="helb-btn helb-btn-blue">
+                                <i class="fa fa-cube me-2"></i>ACCESSOIRES
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container py-5">
+                  
+                    <div class="row justify-content-center mb-5">
+                        <div class="col-lg-8">
+                            <div class="helb-cta-box" style="background: var(--helb-gray); border-color: var(--helb-blue);">
+                                <h4 style="color: var(--helb-blue);"><i class="fa fa-info-circle me-2"></i>EN MAGASIN</h4>
+                                <p>La reservation se fait uniquement en magasin ou par telephone</p>
+                                <a href="/contact" class="helb-btn helb-btn-blue">
+                                    <i class="fa fa-phone me-2"></i>NOUS CONTACTER
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="helb-section-header">
+                        <h2>TARIFS</h2>
+                        <div class="helb-divider"></div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="helb-specs-table w-100">
+                            <thead>
+                                <tr>
+                                    <th>TYPE</th>
+                                    <th class="text-center">HEURE</th>
+                                    <th class="text-center">JOUR</th>
+                                    <th class="text-center">SEMAINE</th>
+                                    <th class="text-center">MOIS</th>
+                                    <th class="text-center">CAUTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="bike_types.items()" t-as="bt">
+                                    <tr>
+                                        <td class="fw-bold" style="color: var(--helb-orange);"><t t-esc="bt[1].upper()"/></td>
+                                        <t t-foreach="['hour', 'day', 'week', 'month']" t-as="dtype">
+                                            <t t-set="price_rec" t-value="pricing.filtered(lambda p: p.bike_type == bt[0] and p.duration_type == dtype)[:1]"/>
+                                            <td class="text-center">
+                                                <t t-if="price_rec">
+                                                    <t t-esc="int(price_rec.price)"/> EUR
+                                                </t>
+                                                <t t-else="">-</t>
+                                            </td>
+                                        </t>
+                                        <t t-set="deposit_rec" t-value="pricing.filtered(lambda p: p.bike_type == bt[0])[:1]"/>
+                                        <td class="text-center">
+                                            <t t-if="deposit_rec">
+                                                <t t-esc="int(deposit_rec.deposit_amount)"/> EUR
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+  
+    <template id="about_page" name="A Propos">
+        <t t-call="website.layout">
+            <div class="helb-page">
+                <div class="helb-hero">
+                    <div class="helb-hero-content container text-center">
+                        <h1 class="helb-pixel-title mb-3" style="font-size: 28px;">A PROPOS</h1>
+                        <p class="helb-subtitle">Votre specialiste velo depuis 2024</p>
+                    </div>
+                </div>
+
+                <div class="container py-5">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <div class="helb-card p-4 mb-4">
+                                <h3 class="helb-pixel-title mb-3" style="font-size: 14px;">NOTRE MISSION</h3>
+                                <p class="helb-card-text" style="font-size: 15px; line-height: 1.8;">
+                                    HELB Bike Shop est votre partenaire mobilite douce. 
+                                    Nous proposons la vente et la location de velos de qualite pour tous les usages : 
+                                    urbain, sportif, loisir ou professionnel.
+                                </p>
+                            </div>
+
+                            <div class="helb-section-header">
+                                <h2 style="font-size: 14px;">NOS SERVICES</h2>
+                                <div class="helb-divider"></div>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="helb-contact-card">
+                                        <i class="fa fa-bicycle"></i>
+                                        <h5>VENTE</h5>
+                                        <p>Velos neufs et occasions</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="helb-contact-card">
+                                        <i class="fa fa-clock-o"></i>
+                                        <h5>LOCATION</h5>
+                                        <p>Courte et longue duree</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="helb-contact-card">
+                                        <i class="fa fa-cube"></i>
+                                        <h5>ACCESSOIRES</h5>
+                                        <p>Equipements et pieces</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="helb-contact-card">
+                                        <i class="fa fa-wrench"></i>
+                                        <h5>REPARATION</h5>
+                                        <p>Entretien et maintenance</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-5">
+                                <a href="/shop/bikes" class="helb-btn helb-btn-primary me-2">
+                                    <i class="fa fa-bicycle me-2"></i>VOIR NOS VELOS
+                                </a>
+                                <a href="/contact" class="helb-btn helb-btn-secondary">
+                                    <i class="fa fa-envelope me-2"></i>CONTACT
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+  
+    <template id="contact_page" name="Contact">
+        <t t-call="website.layout">
+            <div class="helb-page">
+                <div class="helb-hero">
+                    <div class="helb-hero-content container text-center">
+                        <h1 class="helb-pixel-title mb-3" style="font-size: 28px;">CONTACT</h1>
+                        <p class="helb-subtitle">Une question ? Contactez-nous !</p>
+                    </div>
+                </div>
+
+                <div class="container py-5">
+                    <div class="row">
+                        <div class="col-lg-5 mb-4">
+                            <div class="helb-contact-card">
+                                <i class="fa fa-map-marker"></i>
+                                <h5>ADRESSE</h5>
+                                <p>123 Rue du Velo<br/>1000 Bruxelles, Belgique</p>
+                            </div>
+
+                            <div class="helb-contact-card">
+                                <i class="fa fa-phone"></i>
+                                <h5>TELEPHONE</h5>
+                                <p>+32 2 123 45 67</p>
+                            </div>
+
+                            <div class="helb-contact-card">
+                                <i class="fa fa-envelope"></i>
+                                <h5>EMAIL</h5>
+                                <p>contact@helb-bike.be</p>
+                            </div>
+
+                            <div class="helb-contact-card">
+                                <i class="fa fa-clock-o"></i>
+                                <h5>HORAIRES</h5>
+                                <p>
+                                    Lun - Ven: 9h - 18h<br/>
+                                    Sam: 10h - 17h<br/>
+                                    Dim: Ferme
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-7">
+                            <div class="helb-form">
+                                <h4 class="helb-pixel-title mb-4" style="font-size: 14px;">ENVOYEZ UN MESSAGE</h4>
+                                <form action="/contactus" method="post">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="mb-3">
+                                        <label class="helb-form-label">NOM</label>
+                                        <input type="text" name="name" class="form-control helb-form-control" required="required"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="helb-form-label">EMAIL</label>
+                                        <input type="email" name="email" class="form-control helb-form-control" required="required"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="helb-form-label">SUJET</label>
+                                        <select name="subject" class="form-control helb-form-control">
+                                            <option value="vente">Achat de velo</option>
+                                            <option value="location">Location</option>
+                                            <option value="accessoire">Accessoires</option>
+                                            <option value="autre">Autre</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="helb-form-label">MESSAGE</label>
+                                        <textarea name="message" class="form-control helb-form-control" rows="5" required="required"></textarea>
+                                    </div>
+                                    <button type="submit" class="helb-btn helb-btn-primary w-100">
+                                        <i class="fa fa-paper-plane me-2"></i>ENVOYER
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

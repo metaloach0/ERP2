@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="bike_rental_wizard_form" model="ir.ui.view">
+        <field name="name">bike.rental.wizard.form</field>
+        <field name="model">bike.rental.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Creer des locations">
+                <group>
+                    <group string="Client">
+                        <field name="customer_id"/>
+                        <field name="create_contract"/>
+                        <field name="contract_type"/>
+                    </group>
+                    <group string="Periode">
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="duration_type"/>
+                    </group>
+                </group>
+                
+                <notebook>
+                    <page string="Velos" name="bikes">
+                        <field name="bike_ids" widget="many2many_tags"/>
+                        
+                        <field name="line_ids">
+                            <list editable="bottom">
+                                <field name="bike_id"/>
+                                <field name="unit_price"/>
+                                <field name="duration"/>
+                                <field name="subtotal"/>
+                                <field name="deposit"/>
+                                <field name="currency_id" column_invisible="True"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Accessoires" name="accessories">
+                        <field name="include_accessories"/>
+                        <field name="accessory_ids" widget="many2many_tags"/>
+                    </page>
+                    <page string="Options" name="options">
+                        <group>
+                            <field name="discount_percent"/>
+                            <field name="notes"/>
+                        </group>
+                    </page>
+                </notebook>
+                
+                <group>
+                    <group>
+                        <field name="total_deposit"/>
+                    </group>
+                    <group>
+                        <field name="total_amount"/>
+                    </group>
+                    <field name="currency_id" invisible="1"/>
+                </group>
+                
+                <footer>
+                    <button name="action_create_rentals" string="Creer les locations" type="object" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    
+    <record id="action_bike_rental_wizard" model="ir.actions.act_window">
+        <field name="name">Nouvelle location</field>
+        <field name="res_model">bike.rental.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

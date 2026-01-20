@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <record id="bike_rental_contract_list" model="ir.ui.view">
+        <field name="name">bike.rental.contract.list</field>
+        <field name="model">bike.rental.contract</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="contract_type"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="rental_count"/>
+                <field name="total_amount"/>
+                <field name="balance_due"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="bike_rental_contract_form" model="ir.ui.view">
+        <field name="name">bike.rental.contract.form</field>
+        <field name="model">bike.rental.contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Confirmer" type="object" class="btn-primary"/>
+                    <button name="action_activate" string="Activer" type="object" class="btn-primary"/>
+                    <button name="action_done" string="Terminer" type="object"/>
+                    <button name="action_cancel" string="Annuler" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,active,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_rentals" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <field name="rental_count" widget="statinfo" string="Locations"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Client">
+                            <field name="customer_id"/>
+                            <field name="contract_type"/>
+                            <field name="date_contract"/>
+                        </group>
+                        <group string="Periode">
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Locations" name="rentals">
+                            <field name="rental_ids">
+                                <list editable="bottom">
+                                    <field name="bike_id"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="duration_type"/>
+                                    <field name="unit_price"/>
+                                    <field name="total_price"/>
+                                    <field name="deposit"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Paiement" name="payment">
+                            <group>
+                                <group string="Montants">
+                                    <field name="discount_percent"/>
+                                    <field name="discount_amount"/>
+                                    <field name="total_amount"/>
+                                    <field name="total_deposit"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </group>
+                                <group string="Reglement">
+                                    <field name="amount_paid"/>
+                                    <field name="balance_due"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Conditions" name="terms">
+                            <group>
+                                <field name="terms_accepted"/>
+                                <field name="id_document_type"/>
+                                <field name="id_document_number"/>
+                            </group>
+                            <field name="special_conditions"/>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    
+    <record id="bike_rental_contract_search" model="ir.ui.view">
+        <field name="name">bike.rental.contract.search</field>
+        <field name="model">bike.rental.contract</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="customer_id"/>
+            </search>
+        </field>
+    </record>
+
+    
+    <record id="action_bike_rental_contract" model="ir.actions.act_window">
+        <field name="name">Contrats</field>
+        <field name="res_model">bike.rental.contract</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

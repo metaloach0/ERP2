@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sales Analysis -->
+    <record id="bike_sales_report_view_pivot" model="ir.ui.view">
+        <field name="name">bike.bike.sales.report.pivot</field>
+        <field name="model">bike.bike</field>
+        <field name="arch" type="xml">
+            <pivot string="Analyse des velos">
+                <field name="bike_type" type="row"/>
+                <field name="category_id" type="row"/>
+                <field name="sale_price" type="measure"/>
+                <field name="stock_quantity" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="bike_sales_report_view_graph" model="ir.ui.view">
+        <field name="name">bike.bike.sales.report.graph</field>
+        <field name="model">bike.bike</field>
+        <field name="arch" type="xml">
+            <graph string="Repartition par type" type="pie">
+                <field name="bike_type"/>
+                <field name="stock_quantity" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_sales_report" model="ir.actions.act_window">
+        <field name="name">Analyse du catalogue</field>
+        <field name="res_model">bike.bike</field>
+        <field name="view_mode">pivot,graph</field>
+    </record>
+</odoo>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <record id="demo_customer_1" model="res.partner">
+            <field name="name">Jean Dupont</field>
+            <field name="email">jean.dupont@example.com</field>
+            <field name="phone">+32 470 12 34 56</field>
+            <field name="street">Rue de la Loi 42</field>
+            <field name="city">Bruxelles</field>
+            <field name="zip">1000</field>
+            <field name="country_id" ref="base.be"/>
+            <field name="is_bike_customer">True</field>
+            <field name="preferred_bike_type">city</field>
+            <field name="bike_size">m</field>
+            <field name="customer_since" eval="(datetime.now() - timedelta(days=180)).strftime('%Y-%m-%d')"/>
+            <field name="loyalty_points">150</field>
+            <field name="id_document_on_file">True</field>
+        </record>
+
+        <record id="demo_customer_2" model="res.partner">
+            <field name="name">Marie Martin</field>
+            <field name="email">marie.martin@example.com</field>
+            <field name="phone">+32 475 98 76 54</field>
+            <field name="street">Avenue Louise 100</field>
+            <field name="city">Bruxelles</field>
+            <field name="zip">1050</field>
+            <field name="country_id" ref="base.be"/>
+            <field name="is_bike_customer">True</field>
+            <field name="preferred_bike_type">electric</field>
+            <field name="bike_size">s</field>
+            <field name="customer_since" eval="(datetime.now() - timedelta(days=90)).strftime('%Y-%m-%d')"/>
+            <field name="loyalty_points">80</field>
+            <field name="id_document_on_file">True</field>
+        </record>
+
+        <record id="demo_customer_3" model="res.partner">
+            <field name="name">Pierre Leroy</field>
+            <field name="email">pierre.leroy@example.com</field>
+            <field name="phone">+32 476 11 22 33</field>
+            <field name="street">Chaussee de Waterloo 250</field>
+            <field name="city">Bruxelles</field>
+            <field name="zip">1060</field>
+            <field name="country_id" ref="base.be"/>
+            <field name="is_bike_customer">True</field>
+            <field name="preferred_bike_type">mountain</field>
+            <field name="bike_size">l</field>
+            <field name="customer_since" eval="(datetime.now() - timedelta(days=365)).strftime('%Y-%m-%d')"/>
+            <field name="loyalty_points">320</field>
+            <field name="id_document_on_file">True</field>
+        </record>
+
+        <record id="demo_customer_4" model="res.partner">
+            <field name="name">Sophie Lambert</field>
+            <field name="email">sophie.lambert@example.com</field>
+            <field name="phone">+32 477 44 55 66</field>
+            <field name="street">Place du Luxembourg 5</field>
+            <field name="city">Bruxelles</field>
+            <field name="zip">1050</field>
+            <field name="country_id" ref="base.be"/>
+            <field name="is_bike_customer">True</field>
+            <field name="preferred_bike_type">road</field>
+            <field name="bike_size">s</field>
+            <field name="customer_since" eval="(datetime.now() - timedelta(days=60)).strftime('%Y-%m-%d')"/>
+            <field name="loyalty_points">45</field>
+        </record>
+
+       
+        <record id="demo_bike_city_1" model="bike.bike">
+            <field name="name">Urban Cruiser Classic</field>
+            <field name="brand">Gazelle</field>
+            <field name="category_id" ref="bike_category_city"/>
+            <field name="bike_type">city</field>
+            <field name="size">m</field>
+            <field name="color">Noir mat</field>
+            <field name="frame_material">aluminum</field>
+            <field name="wheel_size">28</field>
+            <field name="gears_count">7</field>
+            <field name="weight">14.5</field>
+            <field name="sale_price">650.00</field>
+            <field name="cost_price">400.00</field>
+            <field name="rental_price_hour">5.00</field>
+            <field name="rental_price_day">15.00</field>
+            <field name="rental_price_week">70.00</field>
+            <field name="rental_price_month">200.00</field>
+            <field name="is_for_sale">True</field>
+            <field name="is_for_rent">True</field>
+            <field name="state">available</field>
+            <field name="stock_quantity">3</field>
+            <field name="description">&lt;p&gt;Velo de ville confortable ideal pour les trajets quotidiens. Equipement complet: garde-boue, porte-bagages, eclairage integre.&lt;/p&gt;</field>
+        </record>
+
+        <record id="demo_bike_city_2" model="bike.bike">
+            <field name="name">City Comfort Plus</field>
+            <field name="brand">Batavus</field>
+            <field name="category_id" ref="bike_category_city"/>
+            <field name="bike_type">city</field>
+            <field name="size">l</field>
+            <field name="color">Bleu nuit</field>
+            <field name="frame_material">aluminum</field>
+            <field name="wheel_size">28</field>
+            <field name="gears_count">8</field>
+            <field name="weight">15.2</field>
+            <field name="sale_price">750.00</field>
+            <field name="cost_price">480.00</field>
+            <field name="rental_price_hour">5.00</field>
+            <field name="rental_price_day">15.00</field>
+            <field name="rental_price_week">70.00</field>
+            <field name="rental_price_month">200.00</field>
+            <field name="is_for_sale">True</field>
+            <field name="is_for_rent">True</field>
+            <field name="state">available</field>
+            <field name="stock_quantity">2</field>
+        </record>
+
+        
+        <record id="demo_bike_elec_1" model="bike.bike">
+            <field name="name">E-City Pro 500</field>
+            <field name="brand">Cube</field>
+            <field name="category_id" ref="bike_category_elec_city"/>
+            <field name="bike_type">electric</field>
+            <field name="size">m</field>
+            <field name="color">Gris titane</field>
+            <field name="frame_material">aluminum</field>
+            <field name="wheel_size">28</field>
+            <field name="gears_count">9</field>
+            <field name="weight">22.5</field>
+            <field name="sale_price">2500.00</field>
+            <field name="cost_price">1800.00</field>
+            <field name="rental_price_hour">12.00</field>
+            <field name="rental_price_day">45.00</field>
+            <field name="rental_price_week">250.00</field>
+            <field name="rental_price_month">700.00</field>
+            <field name="is_for_sale">True</field>
+            <field name="is_for_rent">True</field>
+            <field name="state">available</field>
+            <field name="stock_quantity">2</field>
+            <field name="description">&lt;p&gt;VAE haut de gamme avec batterie 500Wh. Autonomie jusqu'a 120km. Moteur Bosch Performance Line.&lt;/p&gt;</field>
+        </record>
+
+        <record id="demo_bike_elec_2" model="bike.bike">
+            <field name="name">E-Mountain Explorer</field>
+            <field name="brand">Specialized</field>
+            <field name="category_id" ref="bike_category_elec_mtb"/>
+            <field name="bike_type">electric</field>
+            <field name="size">l</field>
+            <field name="color">Vert foret</field>
+            <field name="frame_material">aluminum</field>
+            <field name="wheel_size">29</field>
+            <field name="gears_count">12</field>
+            <field name="weight">24.0</field>
+            <field name="sale_price">4500.00</field>
+            <field name="cost_price">3200.00</field>
+            <field name="rental_price_hour">15.00</field>
+            <field name="rental_price_day">55.00</field>
+            <field name="rental_price_week">300.00</field>
+            <field name="rental_price_month">850.00</field>
+            <field name="is_for_sale">True</field>
+            <field name="is_for_rent">True</field>
+            <field name="state">available</field>
+            <field name="stock_quantity">1</field>
+        </record>
+
+        
+        <record id="demo_bike_mtb_1" model="bike.bike">
+            <field name="name">Trail Master 29</field>
+            <field name="brand">Trek</field>
+            <field name="category_id" ref="bike_category_mtb_trail"/>
+            <field name="bike_type">mountain</field>
+            <field name="size">m</field>
+            <field name="color">Orange fluo</field>
+            <field name="frame_material">aluminum</field>
+            <field name="wheel_size">29</field>
+            <field name="gears_count">12</field>
+            <field name="weight">13.2</field>
+            <field name="sale_price">1200.00</field>
+            <field name="cost_price">850.00</field>
+            <field name="rental_price_hour">7.00</field>
+            <field name="rental_price_day">30.00</field>
+            <field name="rental_price_week">150.00</field>
+            <field name="rental_price_month">400.00</field>
+            <field name="is_for_sale">True</field>
+            <field name="is_for_rent">True</field>
+            <field name="state">available</field>
+            <field name="stock_quantity">2</field>
+        </record>
+
+        <record id="demo_bike_mtb_2" model="bike.bike">
+            <field name="name">XC Racer Carbon</field>
+            <field name="brand">Scott</field>
+            <field name="category_id" ref="bike_category_mtb_cross"/>
+            <field name="bike_type">mountain</field>
+            <field name="size">s</field>
+            <field name="color">Noir/Rouge</field>
+            <field name="frame_material">carbon</field>
+            <field name="wheel_size">29</field>
+            <field name="gears_count">12</field>
+            <field name="weight">10.8</field>
+            <field name="sale_price">3500.00</field>
+            <field name="cost_price">2500.00</field>
+            <field name="rental_price_hour">10.00</field>
+            <field name="rental_price_day">40.00</field>
+            <field name="rental_price_week">200.00</field>
+            <field name="rental_price_month">550.00</field>
+            <field name="is_for_sale">True</field>
+            <field name="is_for_rent">True</field>
+            <field name="state">available</field>
+            <field name="stock_quantity">1</field>
+        </record>
+
+        
+        <record id="demo_bike_road_1" model="bike.bike">
+            <field name="name">Speed Elite 105</field>
+            <field name="brand">Giant</field>
+            <field name="category_id" ref="bike_category_road_racing"/>
+            <field name="bike_type">road</field>
+            <field name="size">m</field>
+            <field name="color">Blanc perle</field>
+            <field name="frame_material">carbon</field>
+            <field name="wheel_size">28</field>
+            <field name="gears_count">22</field>
+            <field name="weight">8.5</field>
+            <field name="sale_price">2200.00</field>
+            <field name="cost_price">1600.00</field>
+            <field name="rental_price_hour">8.00</field>
+            <field name="rental_price_day">35.00</field>
+            <field name="rental_price_week">180.00</field>
+            <field name="rental_price_month">500.00</field>
+            <field name="is_for_sale">True</field>
+            <field name="is_for_rent">True</field>
+            <field name="state">available</field>
+            <field name="stock_quantity">2</field>
+        </record>
+
+        
+        <record id="demo_bike_kids_1" model="bike.bike">
+            <field name="name">Junior Sport 20</field>
+            <field name="brand">Decathlon</field>
+            <field name="category_id" ref="bike_category_kids"/>
+            <field name="bike_type">kids</field>
+            <field name="size">kids</field>
+            <field name="color">Rouge vif</field>
+            <field name="frame_material">aluminum</field>
+            <field name="wheel_size">20</field>
+            <field name="gears_count">6</field>
+            <field name="weight">9.5</field>
+            <field name="sale_price">250.00</field>
+            <field name="cost_price">150.00</field>
+            <field name="rental_price_hour">3.00</field>
+            <field name="rental_price_day">10.00</field>
+            <field name="rental_price_week">50.00</field>
+            <field name="rental_price_month">120.00</field>
+            <field name="is_for_sale">True</field>
+            <field name="is_for_rent">True</field>
+            <field name="state">available</field>
+            <field name="stock_quantity">4</field>
+        </record>
+
+        
+        <record id="demo_acc_helmet_1" model="bike.accessory">
+            <field name="name">Casque Urban Pro</field>
+            <field name="category">helmet</field>
+            <field name="brand">Abus</field>
+            <field name="sale_price">89.00</field>
+            <field name="cost_price">55.00</field>
+            <field name="stock_quantity">15</field>
+            <field name="stock_min">5</field>
+            <field name="compatible_bike_types">all</field>
+        </record>
+
+        <record id="demo_acc_helmet_2" model="bike.accessory">
+            <field name="name">Casque VTT Enduro</field>
+            <field name="category">helmet</field>
+            <field name="brand">Bell</field>
+            <field name="sale_price">120.00</field>
+            <field name="cost_price">80.00</field>
+            <field name="stock_quantity">8</field>
+            <field name="stock_min">3</field>
+            <field name="compatible_bike_types">mountain</field>
+        </record>
+
+        <record id="demo_acc_lock_1" model="bike.accessory">
+            <field name="name">Antivol U Premium</field>
+            <field name="category">lock</field>
+            <field name="brand">Kryptonite</field>
+            <field name="sale_price">65.00</field>
+            <field name="cost_price">40.00</field>
+            <field name="stock_quantity">20</field>
+            <field name="stock_min">5</field>
+            <field name="compatible_bike_types">all</field>
+        </record>
+
+        <record id="demo_acc_lock_2" model="bike.accessory">
+            <field name="name">Chaine Antivol 120cm</field>
+            <field name="category">lock</field>
+            <field name="brand">Abus</field>
+            <field name="sale_price">45.00</field>
+            <field name="cost_price">28.00</field>
+            <field name="stock_quantity">12</field>
+            <field name="stock_min">5</field>
+            <field name="compatible_bike_types">all</field>
+        </record>
+
+        <record id="demo_acc_light_1" model="bike.accessory">
+            <field name="name">Kit Eclairage LED USB</field>
+            <field name="category">light</field>
+            <field name="brand">Sigma</field>
+            <field name="sale_price">35.00</field>
+            <field name="cost_price">20.00</field>
+            <field name="stock_quantity">25</field>
+            <field name="stock_min">10</field>
+            <field name="compatible_bike_types">all</field>
+        </record>
+
+        <record id="demo_acc_pump_1" model="bike.accessory">
+            <field name="name">Pompe a pied Pro</field>
+            <field name="category">pump</field>
+            <field name="brand">Topeak</field>
+            <field name="sale_price">55.00</field>
+            <field name="cost_price">35.00</field>
+            <field name="stock_quantity">8</field>
+            <field name="stock_min">3</field>
+            <field name="compatible_bike_types">all</field>
+        </record>
+
+        <record id="demo_acc_bag_1" model="bike.accessory">
+            <field name="name">Sacoche arriere waterproof</field>
+            <field name="category">bag</field>
+            <field name="brand">Ortlieb</field>
+            <field name="sale_price">95.00</field>
+            <field name="cost_price">65.00</field>
+            <field name="stock_quantity">10</field>
+            <field name="stock_min">3</field>
+            <field name="compatible_bike_types">city</field>
+        </record>
+
+        <record id="demo_acc_bottle_1" model="bike.accessory">
+            <field name="name">Bidon 750ml + Porte-bidon</field>
+            <field name="category">bottle</field>
+            <field name="brand">Elite</field>
+            <field name="sale_price">18.00</field>
+            <field name="cost_price">10.00</field>
+            <field name="stock_quantity">30</field>
+            <field name="stock_min">10</field>
+            <field name="compatible_bike_types">all</field>
+        </record>
+
+        <record id="demo_acc_tire_1" model="bike.accessory">
+            <field name="name">Pneu ville 28x1.75</field>
+            <field name="category">tire</field>
+            <field name="brand">Schwalbe</field>
+            <field name="sale_price">32.00</field>
+            <field name="cost_price">22.00</field>
+            <field name="stock_quantity">20</field>
+            <field name="stock_min">8</field>
+            <field name="compatible_bike_types">city</field>
+        </record>
+
+        <record id="demo_acc_tube_1" model="bike.accessory">
+            <field name="name">Chambre a air 28 pouces</field>
+            <field name="category">tube</field>
+            <field name="brand">Continental</field>
+            <field name="sale_price">8.00</field>
+            <field name="cost_price">4.00</field>
+            <field name="stock_quantity">50</field>
+            <field name="stock_min">20</field>
+            <field name="compatible_bike_types">all</field>
+        </record>
+    </data>
+</odoo>

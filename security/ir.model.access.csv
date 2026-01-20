@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bike_category_user,bike.category.user,model_bike_category,group_bike_shop_user,1,0,0,0
+access_bike_category_manager,bike.category.manager,model_bike_category,group_bike_shop_manager,1,1,1,1
+access_bike_bike_user,bike.bike.user,model_bike_bike,group_bike_shop_user,1,1,1,0
+access_bike_bike_manager,bike.bike.manager,model_bike_bike,group_bike_shop_manager,1,1,1,1
+access_bike_accessory_user,bike.accessory.user,model_bike_accessory,group_bike_shop_user,1,1,1,0
+access_bike_accessory_manager,bike.accessory.manager,model_bike_accessory,group_bike_shop_manager,1,1,1,1
+access_bike_rental_user,bike.rental.user,model_bike_rental,group_bike_shop_user,1,1,1,0
+access_bike_rental_manager,bike.rental.manager,model_bike_rental,group_bike_shop_manager,1,1,1,1
+access_bike_rental_contract_user,bike.rental.contract.user,model_bike_rental_contract,group_bike_shop_user,1,1,1,0
+access_bike_rental_contract_manager,bike.rental.contract.manager,model_bike_rental_contract,group_bike_shop_manager,1,1,1,1
+access_bike_rental_pricing_user,bike.rental.pricing.user,model_bike_rental_pricing,group_bike_shop_user,1,0,0,0
+access_bike_rental_pricing_manager,bike.rental.pricing.manager,model_bike_rental_pricing,group_bike_shop_manager,1,1,1,1
+access_bike_rental_wizard_user,bike.rental.wizard.user,model_bike_rental_wizard,group_bike_shop_user,1,1,1,1
+access_bike_rental_wizard_line_user,bike.rental.wizard.line.user,model_bike_rental_wizard_line,group_bike_shop_user,1,1,1,1
+access_bike_rental_extend_wizard_user,bike.rental.extend.wizard.user,model_bike_rental_extend_wizard,group_bike_shop_user,1,1,1,1

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- User Groups -->
+    <record id="group_bike_shop_user" model="res.groups">
+        <field name="name">Bike Shop / Utilisateur</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="group_bike_shop_manager" model="res.groups">
+        <field name="name">Bike Shop / Responsable</field>
+        <field name="implied_ids" eval="[(4, ref('group_bike_shop_user'))]"/>
+    </record>
+
+    <!-- Record Rules -->
+    <record id="bike_bike_company_rule" model="ir.rule">
+        <field name="name">Bike Shop: Velos multi-societe</field>
+        <field name="model_id" ref="model_bike_bike"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="bike_rental_company_rule" model="ir.rule">
+        <field name="name">Bike Shop: Locations multi-societe</field>
+        <field name="model_id" ref="model_bike_rental"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="bike_rental_contract_company_rule" model="ir.rule">
+        <field name="name">Bike Shop: Contrats multi-societe</field>
+        <field name="model_id" ref="model_bike_rental_contract"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="bike_accessory_company_rule" model="ir.rule">
+        <field name="name">Bike Shop: Accessoires multi-societe</field>
+        <field name="model_id" ref="model_bike_accessory"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

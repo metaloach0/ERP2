@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <record id="bike_rental_list" model="ir.ui.view">
+        <field name="name">bike.rental.list</field>
+        <field name="model">bike.rental</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="bike_id"/>
+                <field name="customer_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="duration_display"/>
+                <field name="total_price"/>
+                <field name="invoice_id" optional="show"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="bike_rental_form" model="ir.ui.view">
+        <field name="name">bike.rental.form</field>
+        <field name="model">bike.rental</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" string="Confirmer" type="object" class="btn-primary"/>
+                    <button name="action_start" string="Demarrer" type="object" class="btn-primary"/>
+                    <button name="action_return" string="Retourner" type="object" class="btn-primary"/>
+                    <button name="action_create_invoice" string="Creer facture" type="object" class="btn-secondary"/>
+                    <button name="action_view_invoice" string="Voir facture" type="object" class="btn-secondary"/>
+                    <button name="action_extend_rental" string="Prolonger" type="object"/>
+                    <button name="action_cancel" string="Annuler" type="object"/>
+                    <button name="action_return_deposit" string="Rendre la caution" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,ongoing,returned"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Location">
+                            <field name="bike_id"/>
+                            <field name="customer_id"/>
+                            <field name="contract_id"/>
+                        </group>
+                        <group string="Periode">
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="date_returned"/>
+                            <field name="duration_type"/>
+                            <field name="duration_display"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Tarification">
+                            <field name="unit_price"/>
+                            <field name="total_price"/>
+                            <field name="deposit"/>
+                            <field name="deposit_returned"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Retard">
+                            <field name="is_overdue"/>
+                            <field name="overdue_days"/>
+                            <field name="late_fee"/>
+                        </group>
+                        <group string="Facturation">
+                            <field name="invoice_id"/>
+                            <field name="invoice_state"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Accessoires" name="accessories">
+                            <field name="accessories_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Etat du velo" name="condition">
+                            <group>
+                                <field name="bike_condition_start"/>
+                                <field name="bike_condition_end"/>
+                            </group>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+   
+    <record id="bike_rental_search" model="ir.ui.view">
+        <field name="name">bike.rental.search</field>
+        <field name="model">bike.rental</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="bike_id"/>
+                <field name="customer_id"/>
+            </search>
+        </field>
+    </record>
+
+    
+    <record id="action_bike_rental" model="ir.actions.act_window">
+        <field name="name">Locations</field>
+        <field name="res_model">bike.rental</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

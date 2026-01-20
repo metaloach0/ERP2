@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="bike_category_list" model="ir.ui.view">
+        <field name="name">bike.category.list</field>
+        <field name="model">bike.category</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="bike_count"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="bike_category_form" model="ir.ui.view">
+        <field name="name">bike.category.form</field>
+        <field name="model">bike.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Nom de la categorie"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="parent_id"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="bike_count"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <field name="description" placeholder="Description de la categorie"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+   
+    <record id="bike_bike_list" model="ir.ui.view">
+        <field name="name">bike.bike.list</field>
+        <field name="model">bike.bike</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="brand"/>
+                <field name="bike_type"/>
+                <field name="size"/>
+                <field name="category_id"/>
+                <field name="sale_price"/>
+                <field name="rental_price_day"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    
+    <record id="bike_bike_form" model="ir.ui.view">
+        <field name="name">bike.bike.form</field>
+        <field name="model">bike.bike</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_set_available" string="Disponible" type="object" class="btn-primary"/>
+                    <button name="action_set_maintenance" string="Maintenance" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="available,rented,maintenance"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_rentals" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <field name="rental_count" widget="statinfo" string="Locations"/>
+                        </button>
+                    </div>
+                    <field name="image_1920" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Nom du modele"/></h1>
+                        <field name="reference" readonly="1"/>
+                    </div>
+                    <group>
+                        <group string="Informations generales">
+                            <field name="brand"/>
+                            <field name="category_id"/>
+                            <field name="bike_type"/>
+                            <field name="model_year"/>
+                        </group>
+                        <group string="Caracteristiques">
+                            <field name="size"/>
+                            <field name="color"/>
+                            <field name="frame_material"/>
+                            <field name="wheel_size"/>
+                            <field name="gears_count"/>
+                            <field name="weight"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Prix" name="pricing">
+                            <group>
+                                <group string="Vente">
+                                    <field name="is_for_sale"/>
+                                    <field name="sale_price"/>
+                                    <field name="cost_price"/>
+                                    <field name="stock_quantity"/>
+                                </group>
+                                <group string="Location">
+                                    <field name="is_for_rent"/>
+                                    <field name="rental_price_hour"/>
+                                    <field name="rental_price_day"/>
+                                    <field name="rental_price_week"/>
+                                    <field name="rental_price_month"/>
+                                </group>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </page>
+                        <page string="Description" name="description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Locations" name="rentals">
+                            <field name="rental_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="customer_id"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="state"/>
+                                    <field name="total_price"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Technique" name="technical">
+                            <group>
+                                <field name="product_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="active"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+   
+    <record id="bike_bike_search" model="ir.ui.view">
+        <field name="name">bike.bike.search</field>
+        <field name="model">bike.bike</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="reference"/>
+                <field name="brand"/>
+                <field name="category_id"/>
+            </search>
+        </field>
+    </record>
+
+   
+    <record id="action_bike_category" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">bike.category</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_bike_bike" model="ir.actions.act_window">
+        <field name="name">Velos</field>
+        <field name="res_model">bike.bike</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
