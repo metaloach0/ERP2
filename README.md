@@ -1,5 +1,7 @@
 # Bike Shop - Module Odoo 19 pour Magasin de Velos
 
+Réalisé par Achraf Salhi, Amine Zaouia et Maximillien Dargent (Amine et Max ont travaillé de leurs côtés et ont envoyé leurs parties à Achraf qui a push tout le projet avec sa partie)
+
 Module Odoo complet pour la gestion d'un magasin de velos avec vente, location et site web e-commerce.
 
 ## Fonctionnalites
